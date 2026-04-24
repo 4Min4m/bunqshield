@@ -1,0 +1,26 @@
+{
+  "files.defaultLanguage": "markdown",
+  "files.associations": {
+    "GETTING_STARTED.md": "markdown",
+    "README.md": "markdown",
+    "*.md": "markdown"
+  },
+  "markdown.preview.openMarkdownLinks": "inEditor",
+  "markdown.preview.scrollPreviewWithEditor": true,
+  "markdown.preview.scrollEditorWithPreview": true,
+  "editor.wordWrap": "on",
+  "editor.fontSize": 14,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "explorer.confirmDelete": true,
+  "explorer.confirmDragAndDrop": true,
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.cursorBlinking": true,
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "workbench.editorAssociations": {
+    "*.md": "default"
+  }
+}

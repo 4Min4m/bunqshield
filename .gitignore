@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+.mypy_cache/
+.ruff_cache/
+dist/
+build/
+
+# Node
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# CDK
+infra/cdk.out/
+infra/node_modules/
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Model weights
+*.pth
+*.pt
+*.bin
+/tmp/model/
+
+# OS
+.DS_Store
+*.log

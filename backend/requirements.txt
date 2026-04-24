@@ -1,0 +1,17 @@
+fastapi==0.111.0
+uvicorn[standard]
+torch==2.2.0
+timm
+opencv-python-headless==4.9.0.80
+scikit-image
+anthropic
+pydantic>=2.0
+boto3
+Pillow
+numpy
+python-multipart
+httpx
+ruff
+mypy
+pytest
+pytest-asyncio
