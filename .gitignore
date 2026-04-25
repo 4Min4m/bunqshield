@@ -37,3 +37,4 @@ public/assets/
 public/*.js
 public/*.css
 public/*.map
+*.code-workspace
