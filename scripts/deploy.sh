@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-AWS_REGION=${AWS_REGION:-eu-west-1}
+AWS_REGION=${AWS_REGION:-us-east-1}
 AWS_ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
 ECR_REPO="${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com/bunqshield-ai-service"
 IMAGE_TAG=$(git rev-parse --short HEAD)

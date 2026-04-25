@@ -45,7 +45,7 @@ Open http://localhost:5173 — click any demo scenario card. Done.
 
 ### Deploy
 ```bash
-export AWS_REGION=eu-west-1
+export AWS_REGION=us-east-1
 bash scripts/deploy.sh
 ```
 
@@ -238,6 +238,6 @@ bunqshield/
 | `DEMO_MODE` | No | `true` = zero external deps, instant responses |
 | `ANTHROPIC_API_KEY` | No | Claude API (falls back to deterministic logic) |
 | `BUNQ_API_KEY` | No | bunq sandbox (falls back to demo payments) |
-| `AWS_REGION` | No | Default: `eu-west-1` |
+| `AWS_REGION` | No | Default: `us-east-1` |
 
 The system **never crashes**. Every external dependency has a demo fallback.

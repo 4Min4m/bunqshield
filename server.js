@@ -1,58 +1,46 @@
 const express = require("express");
+const http = require("http");
 const app = express();
 const PORT = 3000;
 
-// Middleware
+// Proxy /api and /health to FastAPI backend on port 8000
+function proxyToBackend(req, res) {
+  const options = {
+    hostname: "127.0.0.1",
+    port: 8000,
+    path: req.url,
+    method: req.method,
+    headers: { ...req.headers, host: "127.0.0.1:8000" },
+  };
+  const proxy = http.request(options, (backendRes) => {
+    res.writeHead(backendRes.statusCode, backendRes.headers);
+    backendRes.pipe(res);
+  });
+  proxy.on("error", () => res.status(502).json({ error: "Backend unavailable" }));
+  req.pipe(proxy);
+}
+
+// Proxy must come before static middleware — use all() to preserve full path
+app.all("/api/*", proxyToBackend);
+app.all("/health", proxyToBackend);
+
+// Serve React SPA
 app.use(express.static("public"));
 
-// Health check endpoint
-app.get("/health", (req, res) => {
-  res.json({
-    status: "ok",
-    service: "npm-dev-server",
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime()
-  });
-});
-
-// Main endpoint
-app.get("/", (req, res) => {
-  res.json({
-    status: "healthy",
-    message: "NPM dev server running",
-    timestamp: new Date().toISOString(),
-    port: PORT,
-    uptime: process.uptime()
-  });
+// SPA fallback — all unmatched routes serve index.html
+app.get("*", (req, res) => {
+  res.sendFile("index.html", { root: "public" });
 });
 
 // Error handling
 app.use((err, req, res, next) => {
   console.error("Server error:", err);
-  res.status(500).json({
-    status: "error",
-    message: "Internal server error"
-  });
+  res.status(500).json({ status: "error", message: "Internal server error" });
 });
 
-// Start server
 const server = app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Dev server running on http://0.0.0.0:${PORT}`);
+  console.log(`BunqShield serving on http://0.0.0.0:${PORT}`);
 });
 
-// Graceful shutdown
-process.on("SIGTERM", () => {
-  console.log("Received SIGTERM, shutting down gracefully");
-  server.close(() => {
-    console.log("Server closed");
-    process.exit(0);
-  });
-});
-
-process.on("SIGINT", () => {
-  console.log("Received SIGINT, shutting down gracefully");
-  server.close(() => {
-    console.log("Server closed");
-    process.exit(0);
-  });
-});
+process.on("SIGTERM", () => server.close(() => process.exit(0)));
+process.on("SIGINT", () => server.close(() => process.exit(0)));

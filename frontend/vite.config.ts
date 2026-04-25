@@ -8,5 +8,9 @@ export default defineConfig({
       '/api': 'http://localhost:8000',
       '/health': 'http://localhost:8000',
     },
+    allowedHosts: [
+      'localhost',
+      'd1xtsg7hl4tp01.cloudfront.net'
+    ]
   },
 })

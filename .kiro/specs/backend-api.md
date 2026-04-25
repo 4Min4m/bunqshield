@@ -125,7 +125,7 @@ CORSMiddleware(allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 | DEMO_MODE | false | Enable demo mode |
 | ANTHROPIC_API_KEY | — | Claude API key |
 | BUNQ_API_KEY | — | bunq sandbox key |
-| AWS_REGION | eu-west-1 | AWS region |
+| AWS_REGION | us-east-1 | AWS region |
 | S3_INVOICES_BUCKET | — | Invoice images |
 | S3_MODELS_BUCKET | — | Model artifacts |
 | DYNAMODB_TABLE | — | Results table |
