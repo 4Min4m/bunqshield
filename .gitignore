@@ -31,3 +31,9 @@ infra/node_modules/
 # OS
 .DS_Store
 *.log
+.kiro/
+.vscode/
+public/assets/
+public/*.js
+public/*.css
+public/*.map
